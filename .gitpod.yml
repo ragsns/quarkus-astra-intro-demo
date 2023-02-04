@@ -15,10 +15,18 @@ tasks:
       echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
       sudo apt-get update
       sudo apt-get install -y kubectl
+      wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.8.0.63668.zip
+      unzip sonarqube-9.8.0.63668.zip
+      PATH=/workspace/quarkus-astra-intro-demo/sonarqube-9.8.0.63668/bin/linux-x86-64/:$PATH
+      sonar.sh start
 ports:
   - port: 5005
   - port: 8080
   - port: 8081
+  - port: 9000
+  - port: 9001
+  - port: 9002
+  - port: 9092
     onOpen: open-browser
 
 github:
@@ -39,3 +47,4 @@ vscode:
     - gabrielbb.vscode-lombok
     - vscjava.vscode-java-debug
     - vscjava.vscode-java-pack
+    - SonarSource.sonarlint-vscode
